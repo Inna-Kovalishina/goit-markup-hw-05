@@ -107,7 +107,7 @@ body {
 /* Стилізація макету СТУДІЯ */
 
 /* Стилізація Header */
-header {
+.header {
     border-bottom: 1px solid #ECECEC;
 }
 
@@ -151,11 +151,9 @@ header {
     margin-right: 50px;
 }
 
-.nav-list .current {
-    color: var(--accent-color);
-}
-
 .nav-link {
+    position: relative;
+
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
@@ -167,10 +165,34 @@ header {
     letter-spacing: 0.02em;
 }
 
+.nav-link.current,
 .nav-link:hover,
 .nav-link:focus {
     color: var(--accent-color);
 }
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    display: block;
+
+    color: var(--primary-text-color);
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+
+    opacity: 0;
+}
+
+.nav-link.current::after,
+.nav-link:hover::after,
+.nav-link:focus::after {
+    opacity: 1;
+}
+
 
 /* Стилізація контактів */
 .list-header {
@@ -345,6 +367,38 @@ header {
 .work-item:not(:last-child) {
     margin-right: 30px;
 }
+
+.work-item {
+    display: block;
+    position: relative;
+}
+
+.overlay-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding-top: 27px;
+    padding-bottom: 27px;
+
+    background: rgba(47, 48, 58, 0.8);
+
+}
+
+.overlay-text {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
 
 /* Стилізація секції "Наша команда" */
 .team {
@@ -604,9 +658,10 @@ header {
 
 .example-card {
     display: block;
+    position: relative;
 }
 
-.example-card>div {
+.example-wrap {
     padding: 20px 24px;
     border-right: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
@@ -635,5 +690,3 @@ header {
     line-height: 1.88;
     letter-spacing: 0.03em;
 }
-
-
